@@ -25,13 +25,13 @@ function transformStateWithClones(state, actions) {
         break;
 
       case 'clear':
-        Object.assign(newState, {});
+        newState = {};
         break;
 
       default:
         throw new Error(`Unknown action type: ${action.type}`);
     }
-     
+
     result.push(newState);
     currentState = newState;
   }
