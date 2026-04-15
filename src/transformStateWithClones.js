@@ -7,8 +7,8 @@
  * @return {Object[]}
  */
 function transformStateWithClones(state, actions) {
-  let currentState = { ...state };
   const result = [];
+  let currentState = { ...state };
 
   for (const action of actions) {
     let newState = { ...currentState };
@@ -25,9 +25,13 @@ function transformStateWithClones(state, actions) {
         break;
 
       case 'clear':
-        newState = {};
+        Object.assign(newState, {});
         break;
+
+      default:
+        throw new Error(`Unknown action type: ${action.type}`);
     }
+     
     result.push(newState);
     currentState = newState;
   }
